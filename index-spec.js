@@ -55,5 +55,19 @@ describe('createPropTypes', function() {
       expect(propTypes["id"]({ id: 15 }, "id")).to.be.an.instanceOf(Error);
       expect(propTypes["id"]({ id: "hello" }, "id")).to.be.a('null');
     });
+
+    it('respects required properties', function() {
+      var propTypes = createPropTypes({
+        type: "object",
+        required: ["a"],
+        properties: {
+          a: { type: "string" },
+          b: { type: "string" }
+        }
+      });
+
+      expect(propTypes.a({}, "a")).to.be.an.instanceOf(Error);
+      expect(propTypes.b({}, "b")).to.be.a('null');
+    })
   });
 });

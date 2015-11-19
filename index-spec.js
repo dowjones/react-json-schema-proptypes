@@ -53,7 +53,7 @@ describe('createPropTypes', function() {
     it('validates correctly based on the property it references', function() {
       var propTypes = createPropTypes(schema);
       expect(propTypes["id"]({ id: 15 }, "id")).to.be.an.instanceOf(Error);
-      expect(propTypes["id"]({ id: "hello" }, "id")).to.be.true;
+      expect(propTypes["id"]({ id: "hello" }, "id")).to.be.a('null');
     });
   });
 });

@@ -1,4 +1,5 @@
-var ajv = require('ajv')();
+import AJV from 'ajv';
+const ajv = AJV();
 
 function getPropError(propName, errors) {
   for(var i = 0; i < errors.length; i++) {
@@ -15,25 +16,25 @@ module.exports = function(schema) {
 
   // Creates a new prototype chain with the schema applied to it.
   // This hides the schema from React but exposes the validators correctly.
-  var PropTypes = function() {};
+  const PropTypes = function() {};
   PropTypes.prototype.__schema = schema;
-  var propTypes = new PropTypes();
+  const propTypes = new PropTypes();
 
   if (schema.properties) {
-    var validate = ajv.compile(schema);
+    const validate = ajv.compile(schema);
 
-    Object.keys(schema.properties).forEach(function(prop) {
+    for (let prop in schema.properties) {
       propTypes[prop] = function(props, propName, componentName) {
-        var valid = validate(props);
+        const valid = validate(props);
         if (valid) return null;
 
-        var propError = getPropError(propName, validate.errors);
+        const propError = getPropError(propName, validate.errors);
         if (!propError) return null;
 
         return new Error("'" + propName + "' " + propError.message + ', found ' + JSON.stringify(props[propName]) + ' instead. Check propTypes of component ' + componentName);
-      }
-    });
+      };
+    }
   }
 
   return propTypes;
-}
+};

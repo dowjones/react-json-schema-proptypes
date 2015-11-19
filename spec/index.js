@@ -1,5 +1,5 @@
 var expect = require('chai').expect;
-var createPropTypes = require('./index');
+var createPropTypes = require('..');
 
 describe('createPropTypes', function() {
   var schema, validators;

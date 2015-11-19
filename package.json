@@ -1,5 +1,5 @@
 {
-  "name": "json-schema-proptypes",
+  "name": "react-json-schema-proptypes",
   "version": "0.1.0",
   "description": "Dynamically generate React propType validators based on a JSON schema",
   "main": "index.js",

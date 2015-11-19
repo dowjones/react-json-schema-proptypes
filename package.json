@@ -1,0 +1,24 @@
+{
+  "name": "json-schema-proptypes",
+  "version": "0.1.0",
+  "description": "Dynamically generate React propType validators based on a JSON schema",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test"
+  },
+  "keywords": [
+    "React",
+    "PropTypes",
+    "JSON",
+    "schema"
+  ],
+  "author": "Dow Jones",
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  },
+  "dependencies": {
+    "tv4": "^1.2.7"
+  }
+}

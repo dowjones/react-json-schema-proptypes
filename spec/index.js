@@ -1,8 +1,10 @@
-var expect = require('chai').expect;
-var createPropTypes = require('..');
+import chai from 'chai';
+import createPropTypes from '../src';
+
+const expect = chai.expect;
 
 describe('createPropTypes', function() {
-  var schema, validators;
+  let schema, validators;
 
   beforeEach(function() {
     schema = {
@@ -19,17 +21,17 @@ describe('createPropTypes', function() {
   });
 
   it('throws if json schema is not an object', function() {
-    var schema = "";
-    var createPropTypesFn = function() { createPropTypes(schema) };
-    expect(createPropTypesFn).to.throw(TypeError, "Schema must be of type 'object'");
+    const schema = "";
+    expect(() => createPropTypes(schema))
+    .to.throw(TypeError, "Schema must be of type 'object'");
   });
 
   it ('throws if json schema\'s type is not "object"', function() {
-    var schema = {
+    const schema = {
       type: "string"
     };
-    var createPropTypesFn = function() { createPropTypes(schema) };
-    expect(createPropTypesFn).to.throw(Error, "Schema must define an object type (currently: string)");
+    expect(() => createPropTypes(schema))
+    .to.throw(Error, "Schema must define an object type (currently: string)");
   });
 
   it('creates a proptype validator for each prop', function() {
@@ -40,24 +42,24 @@ describe('createPropTypes', function() {
   });
 
   it('exposes the schema that it is using to validate', function() {
-    var propTypes = createPropTypes(schema);
+    const propTypes = createPropTypes(schema);
     expect(propTypes.__schema).to.equal(schema);
   });
 
   it('hides the schema from enumerable properties', function() {
-    var propTypes = createPropTypes(schema);
+    const propTypes = createPropTypes(schema);
     expect(Object.keys(propTypes)).to.eql(["id"]);
   });
 
   describe('validator', function() {
     it('validates correctly based on the property it references', function() {
-      var propTypes = createPropTypes(schema);
+      const propTypes = createPropTypes(schema);
       expect(propTypes["id"]({ id: 15 }, "id")).to.be.an.instanceOf(Error);
       expect(propTypes["id"]({ id: "hello" }, "id")).to.be.a('null');
     });
 
     it('respects required properties', function() {
-      var propTypes = createPropTypes({
+      const propTypes = createPropTypes({
         type: "object",
         required: ["a"],
         properties: {
@@ -68,6 +70,6 @@ describe('createPropTypes', function() {
 
       expect(propTypes.a({}, "a")).to.be.an.instanceOf(Error);
       expect(propTypes.b({}, "b")).to.be.a('null');
-    })
+    });
   });
 });

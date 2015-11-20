@@ -1,11 +1,19 @@
 /* @flow */
 import AJV from 'ajv';
+import deepExtend from 'deep-extend';
 const ajv = AJV();
 
-export default function(schema: Object): Object {
-  if (typeof schema !== 'object') {
+function getSchema(schema: Object): Object {
+  return schema.__schema || schema;
+}
+
+export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Object {
+  if (typeof mainSchema !== 'object') {
     throw new TypeError('Schema must be of type \'object\'');
   }
+
+  const schema = deepExtend({}, getSchema(mainSchema), ...otherSchemas.map(getSchema));
+
   if (schema.type !== 'object') {
     throw new Error(`Schema must define an object type (currently: ${schema.type})`);
   }

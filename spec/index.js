@@ -43,12 +43,34 @@ describe('createPropTypes', function() {
 
   it('exposes the schema that it is using to validate', function() {
     const propTypes = createPropTypes(schema);
-    expect(propTypes.__schema).to.equal(schema);
+    expect(propTypes.__schema).to.eql(schema);
   });
 
   it('hides the schema from enumerable properties', function() {
     const propTypes = createPropTypes(schema);
     expect(Object.keys(propTypes)).to.eql(["id"]);
+  });
+
+  it('can take existing proptypes as an argument', function() {
+    const newSchema = {
+      __schema: schema
+    };
+
+    const propTypes = createPropTypes(newSchema);
+    expect(Object.keys(propTypes)).to.eql(["id"]);
+  });
+
+  it('deep merges multiple schemas together', function() {
+    const updates = {
+      "properties" : {
+        "name" : {
+          "type" : "string"
+        }
+      }
+    };
+
+    const propTypes = createPropTypes(schema, updates);
+    expect(Object.keys(propTypes)).to.eql(["id", "name"]);
   });
 
   describe('validator', function() {

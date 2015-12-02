@@ -33,10 +33,11 @@ export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Obj
           const valid = validate(props);
           if (valid) return null;
 
-          const propError = validate.errors.find((e: Object): boolean => e.dataPath === `.${propName}`);
+          const propError = validate.errors.find((e: Object): boolean =>
+            new RegExp(`^\.${propName}(\.|$)`).test(e.dataPath));
           if (!propError) return null;
 
-          return new Error(`'${propName}' ${propError.message}, found ${JSON.stringify(props[propName])} instead. Check propTypes of component ${componentName}`);
+          return new Error(`'${propError.dataPath}' ${propError.message}, found ${JSON.stringify(props[propName])} instead. Check propTypes of component ${componentName}`);
         };
       }
     }

@@ -93,5 +93,22 @@ describe('createPropTypes', function() {
       expect(propTypes.a({}, "a")).to.be.an.instanceOf(Error);
       expect(propTypes.b({}, "b")).to.be.a('null');
     });
+
+    it('error on deep (nested) validation errors', function() {
+      const propTypes = createPropTypes({
+        type: 'object',
+        properties: {
+          a: {
+            type: 'object',
+            properties: {
+              b: { type: 'string' }
+            }
+          },
+          c: { type: 'number' }
+        }
+      });
+      expect(propTypes.a({a: {b: 1}, c: 1}, 'a')).to.be.an.instanceOf(Error);
+      expect(propTypes.c({a: {b: '1'}, c: 'dsasd'}, 'c')).to.be.an.instanceOf(Error);
+    });
   });
 });

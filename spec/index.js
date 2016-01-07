@@ -1,7 +1,21 @@
 import chai from 'chai';
-import createPropTypes from '../src';
+import createPropTypes, {getComponentSchema, SchemaSymbol} from '../src';
 
 const expect = chai.expect;
+
+describe('getComponentSchema', () => {
+  it('throws if component has no proptypes', () => {
+    const component = {displayName: 'test'};
+    const findSchema = () => getComponentSchema(component);
+    expect(findSchema).to.throw('Component test has no propTypes.');
+  });
+
+  it('throws if proptypes is not a valid schema', () => {
+    const component = {displayName: 'test', propTypes: {}};
+    const findSchema = () => getComponentSchema(component);
+    expect(findSchema).to.throw('Component test has no JSON Schema propType definition.');
+  });
+});
 
 describe('createPropTypes', function() {
   let schema, validators;
@@ -43,7 +57,7 @@ describe('createPropTypes', function() {
 
   it('exposes the schema that it is using to validate', function() {
     const propTypes = createPropTypes(schema);
-    expect(propTypes.__schema).to.eql(schema);
+    expect(propTypes[SchemaSymbol]).to.eql(schema);
   });
 
   it('hides the schema from enumerable properties', function() {
@@ -53,7 +67,7 @@ describe('createPropTypes', function() {
 
   it('can take existing proptypes as an argument', function() {
     const newSchema = {
-      __schema: schema
+      [SchemaSymbol]: schema
     };
 
     const propTypes = createPropTypes(newSchema);

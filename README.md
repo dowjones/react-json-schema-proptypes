@@ -40,7 +40,7 @@ This allows you to explore the schema from an external source via `ComponentClas
 #### Composing schemas from child components
 
 ```js
-import propTypeSchema from 'react-json-schema-proptypes';
+import propTypeSchema, {getComponentSchema} from 'react-json-schema-proptypes';
 import Image from 'components/image';
 import Comment from 'components/comment';
 import React from 'react';
@@ -51,10 +51,10 @@ class Article extends React.Component {
   static propTypes = propTypeSchema({
     "type": "object",
     "properties": {
-      "image": Image.propTypes.__schema, // Note: Things you compose must have been curated with react-json-schema-proptypes
+      "image": getComponentSchema(Image), // Note: Things you compose must have been curated with react-json-schema-proptypes
       "comments": {
         "type": "array",
-        "items": Comment.propTypes.__schema
+        "items": getComponentSchema(Comment)
       }
     }
   })

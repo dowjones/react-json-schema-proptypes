@@ -3,8 +3,20 @@ import AJV from 'ajv';
 import deepExtend from 'deep-extend';
 const ajv = AJV();
 
+export const SchemaSymbol = Symbol();
+
 function getSchema(schema: Object): Object {
-  return schema.__schema || schema;
+  return schema[SchemaSymbol] || schema;
+}
+
+export function getComponentSchema(component: Object): Object {
+  if (typeof component.propTypes === 'undefined')
+    throw new Error(`Component ${component.displayName} has no propTypes.`);
+
+  if (typeof component.propTypes[SchemaSymbol] === 'undefined')
+    throw new Error(`Component ${component.displayName} has no JSON Schema propType definition.`);
+
+  return component.propTypes[SchemaSymbol];
 }
 
 export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Object {
@@ -18,11 +30,8 @@ export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Obj
     throw new Error(`Schema must define an object type (currently: ${schema.type})`);
   }
 
-  // Creates a new prototype chain with the schema applied to it.
-  // This hides the schema from React but exposes the validators correctly.
-  const PropTypes = function() {};
-  PropTypes.prototype.__schema = schema;
-  const propTypes = new PropTypes();
+  // $FlowIgnore: flow does not support computed property keys yet.
+  const propTypes = { [SchemaSymbol]: schema };
 
   if (schema.properties) {
     const validate = ajv.compile(schema);

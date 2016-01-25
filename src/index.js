@@ -30,7 +30,7 @@ export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Obj
     throw new Error(`Schema must define an object type (currently: ${schema.type})`);
   }
 
-  // $FlowIgnore: Flow does not support computed property keys yet.
+  // $FlowIgnore: flow does not support computed property keys yet.
   const propTypes = { [SchemaSymbol]: schema };
 
   if (schema.properties) {

@@ -1,6 +1,6 @@
 # react-json-schema-proptypes
 
-Build React PropTypes using a JSON schema.
+Build React PropTypes using a JSON Schema.
 
 ## Usage
 

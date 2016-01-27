@@ -5,16 +5,20 @@ const ajv = AJV();
 
 export const SchemaSymbol = Symbol();
 
+function name(component) {
+  return component.name || component.displayName;
+}
+
 function getSchema(schema: Object): Object {
   return schema[SchemaSymbol] || schema;
 }
 
 export function getComponentSchema(component: Object): Object {
   if (typeof component.propTypes === 'undefined')
-    throw new Error(`Component ${component.displayName} has no propTypes.`);
+    throw new Error(`Component ${name(component)} has no propTypes.`);
 
   if (typeof component.propTypes[SchemaSymbol] === 'undefined')
-    throw new Error(`Component ${component.displayName} has no JSON Schema propType definition.`);
+    throw new Error(`Component ${name(component)} has no JSON Schema propType definition.`);
 
   return component.propTypes[SchemaSymbol];
 }

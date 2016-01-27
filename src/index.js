@@ -3,7 +3,18 @@ import AJV from 'ajv';
 import deepExtend from 'deep-extend';
 const ajv = AJV();
 
-export const SchemaSymbol = Symbol();
+// FIXME when flow supports full Symbol API this can go away
+declare class Symbol {
+  static iterator: string;
+  static (value?:any): Symbol;
+  static for(key:string): Symbol;
+}
+
+export const SchemaSymbol = Symbol.for('react-json-schema-proptypes');
+
+function name(component) {
+  return component.name || component.displayName;
+}
 
 function getSchema(schema: Object): Object {
   return schema[SchemaSymbol] || schema;
@@ -11,10 +22,10 @@ function getSchema(schema: Object): Object {
 
 export function getComponentSchema(component: Object): Object {
   if (typeof component.propTypes === 'undefined')
-    throw new Error(`Component ${component.displayName} has no propTypes.`);
+    throw new Error(`Component ${name(component)} has no propTypes.`);
 
   if (typeof component.propTypes[SchemaSymbol] === 'undefined')
-    throw new Error(`Component ${component.displayName} has no JSON Schema propType definition.`);
+    throw new Error(`Component ${name(component)} has no JSON Schema propType definition.`);
 
   return component.propTypes[SchemaSymbol];
 }

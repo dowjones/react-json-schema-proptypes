@@ -33,9 +33,8 @@ class Article extends React.Component {
 
 #### Introspection
 
-Creating `propTypes` using react-json-schema-proptypes exposes the schema object on the static `propTypes` property of the component as `__schema`.
-
-This allows you to explore the schema from an external source via `ComponentClass.propTypes.__schema`
+Creating `propTypes` using react-json-schema-proptypes exposes the schema object on the component.
+To get the schema, you can use the exported `getComponentSchema` function.
 
 #### Composing schemas from child components
 

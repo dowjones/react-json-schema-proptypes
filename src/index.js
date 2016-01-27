@@ -3,7 +3,14 @@ import AJV from 'ajv';
 import deepExtend from 'deep-extend';
 const ajv = AJV();
 
-export const SchemaSymbol = Symbol();
+// FIXME when flow supports full Symbol API this can go away
+declare class Symbol {
+  static iterator: string;
+  static (value?:any): Symbol;
+  static for(key:string): Symbol;
+}
+
+export const SchemaSymbol = Symbol.for('react-json-schema-proptypes');
 
 function name(component) {
   return component.name || component.displayName;

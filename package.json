@@ -36,8 +36,8 @@
     "sinon": "^1.17.3"
   },
   "dependencies": {
-    "ajv": "^1.4.10",
-    "ajv-i18n": "^0.1.1",
+    "ajv": "^3.8.5",
+    "ajv-i18n": "^1.2.0",
     "deep-extend": "^0.4.0",
     "js-beautify": "^1.5.10"
   }

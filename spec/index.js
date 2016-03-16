@@ -1,5 +1,7 @@
 import chai from 'chai';
 import createPropTypes, {getComponentSchema, SchemaSymbol} from '../src';
+require('mocha-sinon');
+import ajv from '../src/ajvEx'
 
 const expect = chai.expect;
 
@@ -85,6 +87,27 @@ describe('createPropTypes', function() {
 
     const propTypes = createPropTypes(schema, updates);
     expect(Object.keys(propTypes)).to.eql(["id", "name"]);
+  });
+
+  it('warns on deprecated properties', function() {
+    this.sinon.stub(console, 'warn');
+    
+    const propTypes = createPropTypes({
+      type: 'object',
+      properties: {
+        iDoSomething: {type: "string"},
+        iDoNothing: {
+          type: "string",
+          deprecated: {
+            deprecatedOn: "2012-08-31",
+            description: "Please use 'iDoSomething' instead."
+          }
+        }
+      }
+    });
+
+    expect(propTypes["iDoNothing"]({iDoNothing: "hello"}, "iDoNothing")); // invoke custom validator
+    expect(console.warn.calledOnce).to.be.true;
   });
 
   describe('validator', function() {

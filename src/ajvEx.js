@@ -6,7 +6,7 @@ function safeEscapeQuotes(str) {
 }
 
 ajv.addKeyword('deprecated', { inline: function (it, keyword, schema){
-  var op = schema ? `console.warn('Property "${it.schemaPath.replace(/^\.properties\./, '')}" was deprecated on: ${schema.deprecatedOn}. Recommended alternative is: "${safeEscapeQuotes(schema.description)}".')` : '';
+  var op = schema ? `console && console.warn && console.warn('Property "${it.schemaPath.replace(/^\.properties\./, '')}" was deprecated on: ${schema.deprecatedOn}. Recommended alternative is: "${safeEscapeQuotes(schema.description)}".')` : '';
   return `${op} || 1`;
 }});
 

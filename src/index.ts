@@ -1,7 +1,6 @@
 import deepExtend from 'deep-extend';
 import ajv from './ajvEx';
 
-// $FlowIgnore: flow does not support for on symbols yet.
 export const SchemaSymbol = Symbol.for('react-json-schema-proptypes');
 
 function name(component) {
@@ -12,7 +11,7 @@ function getSchema(schema: Object): Object {
   return schema[SchemaSymbol] || schema;
 }
 
-export function getComponentSchema(component: Object): Object {
+export function getComponentSchema(component: any): Object {
   if (typeof component.propTypes === 'undefined')
     throw new Error(`Component ${name(component)} has no propTypes.`);
 
@@ -33,7 +32,6 @@ export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Obj
     throw new Error(`Schema must define an object type (currently: ${schema.type})`);
   }
 
-  // $FlowIgnore: flow does not support computed property keys yet.
   const propTypes = { [SchemaSymbol]: schema };
 
   if (schema.properties) {
@@ -45,7 +43,7 @@ export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Obj
           const valid = validate(props);
           if (valid) return null;
 
-          const propError = validate.errors.find((e: Object): boolean =>
+          const propError = validate.errors.find((e: any): boolean =>
             new RegExp(`^\.${propName}(\.|$)`).test(e.dataPath));
           if (!propError) return null;
 

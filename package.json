@@ -10,8 +10,10 @@
     "lib"
   ],
   "scripts": {
-    "prepublish": "make build",
-    "test": "make test"
+    "build": "tsc",
+    "lint":  "eslint ./src",
+    "pretest": "npm run build && npm run lint",
+    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./spec/**/*.js"
   },
   "keywords": [
     "React",

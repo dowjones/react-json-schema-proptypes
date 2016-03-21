@@ -30,10 +30,7 @@
     "babel-preset-stage-0": "^6.1.18",
     "chai": "^3.4.1",
     "eslint": "^1.9.0",
-    "flow-bin": "^0.18.1",
-    "mocha": "^2.3.4",
-    "mocha-sinon": "^1.1.5",
-    "sinon": "^1.17.3"
+    "mocha": "^2.3.4"
   },
   "dependencies": {
     "ajv": "^3.8.5",

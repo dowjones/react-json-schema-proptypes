@@ -1,4 +1,3 @@
-/* @flow */
 import deepExtend from 'deep-extend';
 import ajv from './ajvEx';
 
@@ -42,7 +41,7 @@ export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Obj
 
     for (let prop in schema.properties) {
       if (schema.properties.hasOwnProperty(prop)) {
-        propTypes[prop] = function(props: Object, propName: string, componentName: string): ?Error {
+        propTypes[prop] = function(props: Object, propName: string, componentName: string): Error {
           const valid = validate(props);
           if (valid) return null;
 

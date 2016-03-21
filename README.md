@@ -96,11 +96,8 @@ Not all features of JSON-Schema are currently supported, for example cross-valid
 
 ## Local development
 
-This project is built with TypeScript, which means you need to install [TypeScript](https://github.com/Microsoft/TypeScript). 
+This project is built with [TypeScript](https://github.com/Microsoft/TypeScript).
 
-```
-npm install -g typescript
-```
 
 Optionally, you would also need [DefinitelyTyped](http://definitelytyped.org/) to install/update TypeScript definition files.
 

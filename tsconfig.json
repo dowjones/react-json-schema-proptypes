@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
     "target": "ES6",
-    "outDir": "lib"
+    "outDir": "gen"
   }
 }

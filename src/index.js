@@ -1,6 +1,7 @@
 /* @flow */
 import deepExtend from 'deep-extend';
 import ajv from './ajvEx';
+import deepFilter from 'deep-filter-object';
 
 // $FlowIgnore: flow does not support for on symbols yet.
 export const SchemaSymbol = Symbol.for('react-json-schema-proptypes');
@@ -20,7 +21,7 @@ export function getComponentSchema(component: Object): Object {
   if (typeof component.propTypes[SchemaSymbol] === 'undefined')
     throw new Error(`Component ${name(component)} has no JSON Schema propType definition.`);
 
-  return component.propTypes[SchemaSymbol];
+  return deepFilter(component.propTypes[SchemaSymbol], (v) => !v.deprecated);
 }
 
 export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Object {

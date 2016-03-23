@@ -39,6 +39,7 @@
     "ajv": "^3.8.5",
     "ajv-i18n": "^1.2.0",
     "deep-extend": "^0.4.0",
+    "deep-filter-object": "^1.0.0",
     "js-beautify": "^1.5.10"
   }
 }

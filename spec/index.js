@@ -1,7 +1,6 @@
 import chai from 'chai';
 import createPropTypes, {getComponentSchema, SchemaSymbol} from '../src';
 import 'mocha-sinon';
-import ajv from '../src/ajvEx';
 
 const expect = chai.expect;
 
@@ -17,6 +16,27 @@ describe('getComponentSchema', () => {
     const findSchema = () => getComponentSchema(component);
     expect(findSchema).to.throw('Component test has no JSON Schema propType definition.');
   });
+
+  it('should not expose deprecated props', () => {
+
+    const component = {displayName: 'test', propTypes: createPropTypes({
+        type: 'object',
+        properties: {
+          "id" : {
+            "type" : "string"
+          },
+          iDoNothing: {
+            type: "string",
+            deprecated: {
+              deprecatedOn: "2012-08-31",
+              description: "Please use 'iDoSomething' instead."
+            }
+          }
+        }
+      })};
+    const schema = getComponentSchema(component);
+    expect(schema.properties['iDoNothing']).to.be.undefined;
+  });  
 });
 
 describe('createPropTypes', function() {

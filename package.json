@@ -10,8 +10,12 @@
     "lib"
   ],
   "scripts": {
-    "prepublish": "make build",
-    "test": "make test"
+    "babelize": "babel gen -d lib --presets es2015,react,stage-0",
+    "build": "tsc && npm run babelize && rimraf gen",
+    "lint": "eslint ./src",
+    "pretest": "npm run build && npm run lint",
+    "prepublish": "npm run build",
+    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./spec/**/*.js"
   },
   "keywords": [
     "React",
@@ -30,10 +34,11 @@
     "babel-preset-stage-0": "^6.1.18",
     "chai": "^3.4.1",
     "eslint": "^1.9.0",
-    "flow-bin": "^0.18.1",
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",
-    "sinon": "^1.17.3"
+    "rimraf": "^2.5.2",
+    "sinon": "^1.17.3",
+    "typescript": "^1.8.9"
   },
   "dependencies": {
     "ajv": "^3.8.5",

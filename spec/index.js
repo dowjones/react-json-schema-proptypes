@@ -1,7 +1,6 @@
 import chai from 'chai';
-import createPropTypes, {getComponentSchema, SchemaSymbol} from '../src';
+import createPropTypes, {getComponentSchema, SchemaSymbol} from '../lib';
 import 'mocha-sinon';
-import ajv from '../src/ajvEx';
 
 const expect = chai.expect;
 
@@ -91,7 +90,7 @@ describe('createPropTypes', function() {
 
   it('warns on deprecated properties', function() {
     this.sinon.stub(console, 'warn');
-    
+
     const propTypes = createPropTypes({
       type: 'object',
       properties: {

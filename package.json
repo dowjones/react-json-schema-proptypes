@@ -14,7 +14,7 @@
     "build": "tsc && npm run babelize && rimraf gen",
     "lint": "eslint ./src",
     "pretest": "npm run build && npm run lint",
-    "prepublish": "npm run build",
+    "prepublish": "tsd install && npm run build",
     "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./spec/**/*.js"
   },
   "keywords": [

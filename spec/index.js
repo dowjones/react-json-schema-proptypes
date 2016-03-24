@@ -1,8 +1,11 @@
 import chai from 'chai';
-import createPropTypes, {getComponentSchema, SchemaSymbol} from '../src';
+import createPropTypes, {schema, getComponentSchema, SchemaSymbol} from '../src';
 import 'mocha-sinon';
 import ajv from '../src/ajvEx';
+import * as originalSchemas from '../src/schemas';
+import React from 'react';
 
+const element = originalSchemas.element
 const expect = chai.expect;
 
 describe('getComponentSchema', () => {
@@ -16,6 +19,12 @@ describe('getComponentSchema', () => {
     const component = {displayName: 'test', propTypes: {}};
     const findSchema = () => getComponentSchema(component);
     expect(findSchema).to.throw('Component test has no JSON Schema propType definition.');
+  });
+});
+
+describe('schema', () => {
+  it('re-exports schemas', () => {
+    expect(schema).to.eql(originalSchemas)
   });
 });
 

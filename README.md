@@ -93,3 +93,14 @@ _* This will create a new object rather than mutating existing ones so you're sa
 ## Caveats
 
 Not all features of JSON-Schema are currently supported, for example cross-validation with other props, so we recommend keeping the schema simple and type-based rather than logic-based.
+
+## Local development
+
+This project is built with [TypeScript](https://github.com/Microsoft/TypeScript).
+
+
+Optionally, you would also need [DefinitelyTyped](http://definitelytyped.org/) to install/update TypeScript definition files.
+
+```
+npm install tsd -g
+```

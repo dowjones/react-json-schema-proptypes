@@ -38,13 +38,12 @@
     "mocha-sinon": "^1.1.5",
     "rimraf": "^2.5.2",
     "sinon": "^1.17.3",
+    "tsd": "^0.6.5",
     "typescript": "^1.8.9"
   },
   "dependencies": {
     "ajv": "^3.8.5",
     "ajv-i18n": "^1.2.0",
-    "deep-extend": "^0.4.0",
-    "deep-filter-object": "^1.0.0",
-    "js-beautify": "^1.5.10"
+    "lodash": "^4.6.1"
   }
 }

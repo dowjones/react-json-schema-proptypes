@@ -35,8 +35,87 @@ describe('getComponentSchema', () => {
         }
       })};
     const schema = getComponentSchema(component);
-    expect(schema.properties['iDoNothing']).to.be.undefined;
+    expect(schema.properties['iDoNothing']).to.not.exist;
+    expect(schema.properties['id']).to.exist;
   });  
+
+  it('should not expose nested deprecated props', () => {
+
+    const component = {displayName: 'test', propTypes: createPropTypes({
+        type: 'object',
+        properties: {
+          "id" : {
+            "type" : "string"
+          },
+          iDoNothing: {
+            type: "string",
+            deprecated: {
+              deprecatedOn: "2012-08-31",
+              description: "Please use 'iDoSomething' instead."
+            }
+          },
+          complexProperty: {
+            type: 'object',
+            additionalData: 'whatever',
+            properties: {
+              id: {
+                type: 'object',
+                properties: {
+                  subid: {
+                    type: 'string'
+                  },
+                  anotherDeprecated: {
+                    type: 'string',
+                    deprecated: {
+                      deprecatedOn: '2012-10-10',
+                      description: 'no reason'
+                    }
+                  }
+                }
+              },
+              name: {
+                type: 'string'
+              }
+            }
+          }
+        }
+      })};
+    const schema = getComponentSchema(component);
+    expect(schema.properties['id']).to.exist;
+    expect(schema.properties['iDoNothing']).to.not.exist;
+    expect(schema.properties['complexProperty']).to.exist;
+    expect(schema.properties.complexProperty.properties['id']).to.exist;
+    expect(schema.properties.complexProperty.properties['name']).to.exist;
+    expect(schema.properties.complexProperty.properties.id.properties['subid']).to.exist;
+    expect(schema.properties.complexProperty.properties.id.properties['anotherDeprecated']).to.not.exist;
+  }); 
+
+  it('should not filter a property named "deprecated"', () => {
+
+    const component = {displayName: 'test', propTypes: createPropTypes({
+        type: 'object',
+        properties: {
+          "id" : {
+            "type" : "string"
+          },
+          iDoNothing: {
+            type: "string",
+            deprecated: {
+              deprecatedOn: "2012-08-31",
+              description: "Please use 'iDoSomething' instead."
+            }
+          },
+          deprecated: {
+            type: 'string'
+          }
+        }
+      })};
+    const schema = getComponentSchema(component);
+    expect(schema.properties['iDoNothing']).to.not.exist;
+    expect(schema.properties['id']).to.exist;
+    expect(schema.properties['deprecated']).to.exist;
+  }); 
+
 });
 
 describe('createPropTypes', function() {

@@ -38,6 +38,7 @@
   "dependencies": {
     "ajv": "^3.8.5",
     "ajv-i18n": "^1.2.0",
+
     "deep-extend": "^0.4.0",
     "react": "^0.14.7"
   }

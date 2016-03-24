@@ -1,11 +1,10 @@
 import chai from 'chai';
-import createPropTypes, {schema, getComponentSchema, SchemaSymbol} from '../src';
+import createPropTypes, {Schema, getComponentSchema, SchemaSymbol} from '../src';
 import 'mocha-sinon';
 import ajv from '../src/ajvEx';
-import * as originalSchemas from '../src/schemas';
+import * as OriginalSchemas from '../src/schemas';
 import React from 'react';
 
-const element = originalSchemas.element
 const expect = chai.expect;
 
 describe('getComponentSchema', () => {
@@ -22,9 +21,9 @@ describe('getComponentSchema', () => {
   });
 });
 
-describe('schema', () => {
+describe('Schema', () => {
   it('re-exports schemas', () => {
-    expect(schema).to.eql(originalSchemas)
+    expect(Schema).to.eql(OriginalSchemas)
   });
 });
 

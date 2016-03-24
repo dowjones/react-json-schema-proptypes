@@ -1,9 +1,9 @@
 /* @flow */
 import deepExtend from 'deep-extend';
 import ajv from './ajvEx';
-import * as schema from '../src/schemas';
+import * as Schema from '../src/schemas';
 
-export { schema };
+export { Schema };
 
 // $FlowIgnore: flow does not support for on symbols yet.
 export const SchemaSymbol = Symbol.for('react-json-schema-proptypes');

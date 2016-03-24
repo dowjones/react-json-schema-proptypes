@@ -1,6 +1,6 @@
 {
   "name": "react-json-schema-proptypes",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Dynamically generate React propType validators based on a JSON schema",
   "publishConfig": {
     "registry": "http://registry.npm.wsjfdev.dowjones.net/"

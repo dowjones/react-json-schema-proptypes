@@ -1,5 +1,5 @@
 import AJV from 'ajv';
-const ajv = AJV();
+const ajv = AJV({errorDataPath: 'property'}); // restore pre v2.0 behavior
 
 function safeEscapeQuotes(str) {
   return str.replace(/\\([\s\S])|(')/g,"\\$1$2").replace(/\\([\s\S])|(")/g,"\\$1$2"); // escape only if not escaped already

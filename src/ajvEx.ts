@@ -1,5 +1,5 @@
 import AJV from 'ajv';
-import React from 'react';
+import * as React from 'react';
 
 const ajv = AJV({errorDataPath: 'property'}); // restore pre v2.0 behavior
 

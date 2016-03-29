@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import ajv from './ajvEx';
-import * as Schema from '../src/schemas';
+import * as Schema from './schemas';
 import omitDeprecated from './util';
 
 export { Schema };

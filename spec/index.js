@@ -1,7 +1,7 @@
 import chai from 'chai';
-import createPropTypes, {Schema, getComponentSchema, SchemaSymbol} from '../src';
+import createPropTypes, {Schema, getComponentSchema, SchemaSymbol} from '../lib';
 import 'mocha-sinon';
-import * as OriginalSchemas from '../src/schemas';
+import * as OriginalSchemas from '../lib/schemas';
 
 const expect = chai.expect;
 

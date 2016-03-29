@@ -31,12 +31,12 @@ class Article extends React.Component {
 
 ```
 
-#### Introspection
+### Introspection
 
 Creating `propTypes` using react-json-schema-proptypes exposes the schema object on the component.
 To get the schema, you can use the exported `getComponentSchema` function.
 
-#### Composing schemas from child components
+### Composing schemas from child components
 
 ```js
 import propTypeSchema, {getComponentSchema} from 'react-json-schema-proptypes';
@@ -65,7 +65,7 @@ class Article extends React.Component {
 
 ```
 
-##### You can also update an existing schema by passing in objects that will override* it
+#### You can also update an existing schema by passing in objects that will override* it
 
 ```js
 import propTypeSchema from 'react-json-schema-proptypes';
@@ -89,6 +89,34 @@ class Article extends React.Component {
 ```
 
 _* This will create a new object rather than mutating existing ones so you're safe to use it however you want._
+
+## API
+
+``` js
+import createPropTypes, {getComponentSchema, Schema, SchemaSymbol} from 'react-json-schema-proptypes';
+
+```
+
+### createPropTypes(schema)
+
+Given a JSON schema, return a React proptypes object.  
+
+### getComponentSchema(Component)
+
+Returns a component's schema from a component class. 
+
+### SchemaSymbol
+
+The Sympbol for react-json-schema-proptypes.
+
+### Schema
+
+#### Schema.element 
+Is a schema that validates a React element.  (Gives a schema represetation equivalent to React.Element)
+
+#### Schema.node
+Is a schema that validates a React node.  (Gives a schema represetation equivalent to React.Element)
+
 
 ## Caveats
 

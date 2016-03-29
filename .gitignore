@@ -4,3 +4,12 @@ lib/
 
 # Webstorm artifacts
 .idea/
+
+# Typescript defs
+typings/
+
+# include ajv defs since they don't exist at the moment
+!typings/ajv
+
+# Typescript output (intermediate for us since we babel-ize!)
+gen/

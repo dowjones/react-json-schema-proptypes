@@ -14,7 +14,7 @@
     "build": "tsc && npm run babelize && rimraf gen",
     "lint": "eslint ./src",
     "pretest": "npm run build && npm run lint",
-    "prepublish": "npm run build",
+    "prepublish": "tsd install && npm run build",
     "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./spec/**/*.js"
   },
   "keywords": [
@@ -39,12 +39,13 @@
     "sinon": "^1.17.3",
     "react": "^0.14.7",
     "rimraf": "^2.5.2",
+    "tsd": "^0.6.5",
     "typescript": "^1.8.9"
   },
   "dependencies": {
     "ajv": "^3.8.5",
     "ajv-i18n": "^1.2.0",
-    "deep-extend": "^0.4.0"    
+    "lodash": "^4.6.1"
   },
   "peerDependencies": {
     "react": "^0.14.7"

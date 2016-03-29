@@ -1,6 +1,7 @@
-import deepExtend from 'deep-extend';
+import * as _ from 'lodash';
 import ajv from './ajvEx';
 import * as Schema from '../src/schemas';
+import omitDeprecated from './util';
 
 export { Schema };
 
@@ -10,26 +11,26 @@ function name(component) {
   return component.name || component.displayName;
 }
 
-function getSchema(schema: Object): Object {
+function getSchema(schema: any): any {
   return schema[SchemaSymbol] || schema;
 }
 
-export function getComponentSchema(component: any): Object {
+export function getComponentSchema(component: any): any {
   if (typeof component.propTypes === 'undefined')
     throw new Error(`Component ${name(component)} has no propTypes.`);
 
   if (typeof component.propTypes[SchemaSymbol] === 'undefined')
     throw new Error(`Component ${name(component)} has no JSON Schema propType definition.`);
 
-  return component.propTypes[SchemaSymbol];
+  return omitDeprecated(component.propTypes[SchemaSymbol]);
 }
 
-export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Object {
+export default function(mainSchema: any, ...otherSchemas: any[]): any {
   if (typeof mainSchema !== 'object') {
     throw new TypeError('Schema must be of type \'object\'');
   }
 
-  const schema = deepExtend({}, getSchema(mainSchema), ...otherSchemas.map(getSchema));
+  const schema: any = _.merge({}, getSchema(mainSchema), ...otherSchemas.map(getSchema));
 
   if (schema.type !== 'object') {
     throw new Error(`Schema must define an object type (currently: ${schema.type})`);
@@ -42,7 +43,7 @@ export default function(mainSchema: Object, ...otherSchemas: Array<Object>): Obj
 
     for (let prop in schema.properties) {
       if (schema.properties.hasOwnProperty(prop)) {
-        propTypes[prop] = function(props: Object, propName: string, componentName: string): void|Error {
+        propTypes[prop] = function(props: any, propName: string, componentName: string): void|Error {
           const valid = validate(props);
           if (valid) return null;
 

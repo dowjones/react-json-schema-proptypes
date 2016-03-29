@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import merge from 'lodash.merge';
 import ajv from './ajvEx';
 import omitDeprecated from './util';
 
@@ -8,11 +8,11 @@ function name(component) {
   return component.name || component.displayName;
 }
 
-function getSchema(schema: any): any {
+function getSchema(schema) {
   return schema[SchemaSymbol] || schema;
 }
 
-export function getComponentSchema(component: any): any {
+export function getComponentSchema(component) {
   if (typeof component.propTypes === 'undefined')
     throw new Error(`Component ${name(component)} has no propTypes.`);
 
@@ -22,12 +22,12 @@ export function getComponentSchema(component: any): any {
   return omitDeprecated(component.propTypes[SchemaSymbol]);
 }
 
-export default function(mainSchema: any, ...otherSchemas: any[]): any {
+export default function(mainSchema, ...otherSchemas) {
   if (typeof mainSchema !== 'object') {
     throw new TypeError('Schema must be of type \'object\'');
   }
 
-  const schema: any = _.merge({}, getSchema(mainSchema), ...otherSchemas.map(getSchema));
+  const schema = merge({}, getSchema(mainSchema), ...otherSchemas.map(getSchema));
 
   if (schema.type !== 'object') {
     throw new Error(`Schema must define an object type (currently: ${schema.type})`);
@@ -40,11 +40,11 @@ export default function(mainSchema: any, ...otherSchemas: any[]): any {
 
     for (let prop in schema.properties) {
       if (schema.properties.hasOwnProperty(prop)) {
-        propTypes[prop] = function(props: any, propName: string, componentName: string): void|Error {
+        propTypes[prop] = function(props, propName, componentName) {
           const valid = validate(props);
           if (valid) return null;
 
-          const propError = validate.errors.find((e: any): boolean =>
+          const propError = validate.errors.find((e): boolean =>
             new RegExp(`^\.${propName}(\.|$)`).test(e.dataPath));
           if (!propError) return null;
 

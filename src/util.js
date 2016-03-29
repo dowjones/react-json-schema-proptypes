@@ -1,4 +1,4 @@
-import isPlainObject from 'lodash.isPlainObject';
+import isPlainObject from 'lodash.isplainobject';
 
 export default function omitDeprecated(obj, isProperty) {
   var picked = {};

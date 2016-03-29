@@ -97,7 +97,7 @@ describe('createPropTypes', function() {
 
   it('warns on deprecated properties', function() {
     this.sinon.stub(console, 'warn');
-    
+
     const propTypes = createPropTypes({
       type: 'object',
       properties: {

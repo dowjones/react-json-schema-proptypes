@@ -14,7 +14,7 @@
     "build": "npm run babelize",
     "lint": "eslint ./src",
     "pretest": "npm run build && npm run lint",
-    "prepublish": "tsd install && npm run build",
+    "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./spec/**/*.js"
   },
   "keywords": [

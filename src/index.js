@@ -1,4 +1,4 @@
-import merge from 'lodash.merge';
+import merge from 'lodash/merge';
 import ajv from './ajvEx';
 import omitDeprecated from './util';
 

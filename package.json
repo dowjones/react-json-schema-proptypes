@@ -10,8 +10,8 @@
     "lib"
   ],
   "scripts": {
-    "babelize": "babel gen -d lib --presets es2015,react,stage-0",
-    "build": "tsc && npm run babelize && rimraf gen",
+    "babelize": "babel src -d lib --presets es2015,react,stage-0",
+    "build": "npm run babelize",
     "lint": "eslint ./src",
     "pretest": "npm run build && npm run lint",
     "prepublish": "npm run build",
@@ -37,12 +37,11 @@
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",
     "rimraf": "^2.5.2",
-    "sinon": "^1.17.3",
-    "typescript": "^1.8.9"
+    "sinon": "^1.17.3"
   },
   "dependencies": {
     "ajv": "^3.8.5",
     "ajv-i18n": "^1.2.0",
-    "deep-extend": "^0.4.0"
+    "lodash": "^4.6.1"
   }
 }

@@ -1,6 +1,6 @@
 import chai from 'chai';
-import * as schema from '../lib/schemas';
-import createPropTypes from '../lib';
+import * as schema from '../src/schemas';
+import createPropTypes from '../src';
 import React from 'react';
 
 

@@ -1,11 +1,11 @@
-import * as _ from 'lodash';
+import isPlainObject from 'lodash/isPlainObject';
 
-export default function omitDeprecated(obj: any, isProperty?: boolean) {
+export default function omitDeprecated(obj, isProperty) {
   var picked = {};
-  Object.keys(obj).forEach(function(key, index) {
+  Object.keys(obj).forEach(function(key) {
     if (isProperty) {
       // if we're inside 'properties', walk deeper only if the property is not deprecated
-      if (!_.isPlainObject(obj[key].deprecated))
+      if (!isPlainObject(obj[key].deprecated))
         picked[key] = omitDeprecated(obj[key]);
     } else {
       if (key !== 'properties') {

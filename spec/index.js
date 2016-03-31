@@ -1,6 +1,7 @@
 import chai from 'chai';
-import createPropTypes, {getComponentSchema, SchemaSymbol} from '../lib';
+import createPropTypes, {Schema, getComponentSchema, SchemaSymbol} from '../lib';
 import 'mocha-sinon';
+import * as OriginalSchemas from '../lib/schemas';
 
 const expect = chai.expect;
 
@@ -118,6 +119,12 @@ describe('getComponentSchema', () => {
 
 });
 
+describe('Schema', () => {
+  it('re-exports schemas', () => {
+    expect(Schema).to.eql(OriginalSchemas);
+  });
+});
+
 describe('createPropTypes', function() {
   let schema, validators;
 
@@ -206,7 +213,7 @@ describe('createPropTypes', function() {
     });
 
     expect(propTypes["iDoNothing"]({iDoNothing: "hello"}, "iDoNothing")); // invoke custom validator
-    expect(console.warn.calledOnce).to.be.true;
+    expect(console.warn.calledOnce).to.be.true; // eslint-disable-line no-console
   });
 
   describe('validator', function() {

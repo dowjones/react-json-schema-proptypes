@@ -115,7 +115,7 @@ The Sympbol for react-json-schema-proptypes.
 Is a schema that validates a React element.  (Gives a schema represetation equivalent to React.Element)
 
 #### Schema.node
-Is a schema that validates a React node.  (Gives a schema represetation equivalent to React.Element)
+Is a schema that validates a React node.  (Gives a schema represetation equivalent to React.Node)
 
 
 ## Caveats

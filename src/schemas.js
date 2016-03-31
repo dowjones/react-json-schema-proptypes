@@ -3,6 +3,10 @@ export const element = {
   'isReactElement': true
 };
 
+export const func = {
+  'isFunction': true
+};
+
 
 export const node = {
   'oneOf': [

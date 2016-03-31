@@ -117,6 +117,9 @@ Is a schema that validates a React element.  (Gives a schema represetation equiv
 #### Schema.node
 Is a schema that validates a React node.  (Gives a schema represetation equivalent to React.Node)
 
+#### Schema.func
+Is a schema that validates a function.
+
 
 ## Caveats
 

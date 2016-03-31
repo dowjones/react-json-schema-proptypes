@@ -1,5 +1,6 @@
 import AJV from 'ajv';
 import * as React from 'react';
+import isFunction from 'lodash/isFunction';
 
 const ajv = AJV({errorDataPath: 'property'}); // restore pre v2.0 behavior
 
@@ -14,6 +15,10 @@ ajv.addKeyword('deprecated', { inline: function (it, keyword, schema){
 
 ajv.addKeyword('isReactElement', { compile: function() {
   return React.isValidElement;
+}});
+
+ajv.addKeyword('isFunction', { compile: function() {
+  return isFunction;
 }});
 
 export default ajv;

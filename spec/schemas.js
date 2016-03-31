@@ -8,6 +8,8 @@ const expect = chai.expect;
 
 const element = React.createElement('li', null, 'Text Content');
 
+const fct = () => { return true; };
+
 describe('schemas', () => {
   describe('element', () => {
     it('is a schema that validates a react element', () => {
@@ -53,4 +55,27 @@ describe('schemas', () => {
       expect(propTypes.node({node: {}}, 'node')).to.be.an.instanceOf(Error);
     });
   });
+
+  describe('func', () => {
+    it('is a schema that validates a function', () => {
+      
+      const componentSchema = { 
+        type: 'object', 
+        properties: {
+          func: schema.func
+        }
+      };
+
+      const propTypes = createPropTypes( componentSchema );
+
+      expect(propTypes.func({func: 'string'}, 'func')).to.be.an.instanceOf(Error);
+      expect(propTypes.func({func: element}, 'func')).to.be.an.instanceOf(Error);
+      expect(propTypes.func({func: []}, 'func')).to.be.an.instanceOf(Error);
+      expect(propTypes.func({func: 1}, 'func')).to.be.an.instanceOf(Error);
+      expect(propTypes.func({func: false}, 'func')).to.be.an.instanceOf(Error);
+      expect(propTypes.func({func: {}}, 'func')).to.be.an.instanceOf(Error);
+      expect(propTypes.func({func: fct}, 'func')).to.eq(null);
+    });
+  });
+
 });

@@ -3,7 +3,7 @@
   "version": "0.3.2",
   "description": "Dynamically generate React propType validators based on a JSON schema",
   "publishConfig": {
-    "registry": "http://registry.npm.wsjfdev.dowjones.net/"
+    "registry": "http://production.npmserver.virginia.onservo.com"
   },
   "main": "lib/index.js",
   "files": [

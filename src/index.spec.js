@@ -1,11 +1,23 @@
 import chai from 'chai';
-import createPropTypes, {Schema, getComponentSchema, SchemaSymbol} from '../src';
+import createPropTypes, {Schema, fake, getComponentSchema, SchemaSymbol} from '../src';
 import 'mocha-sinon';
 import * as OriginalSchemas from '../src/schemas';
+import originalFake from './fake';
 
 const expect = chai.expect;
 
 describe('getComponentSchema', () => {
+  describe('re-exports', () => {
+    it('re-exports schemas', () => {
+      expect(Schema).to.eql(OriginalSchemas);
+    });
+
+    it('re-exports schemas', () => {
+      expect(fake).to.eql(originalFake);
+    });
+  });
+
+
   it('throws if component has no proptypes', () => {
     const component = {displayName: 'test'};
     const findSchema = () => getComponentSchema(component);
@@ -38,7 +50,7 @@ describe('getComponentSchema', () => {
     const schema = getComponentSchema(component);
     expect(schema.properties['iDoNothing']).to.not.exist;
     expect(schema.properties['id']).to.exist;
-  });  
+  });
 
   it('should not expose nested deprecated props', () => {
 
@@ -89,7 +101,7 @@ describe('getComponentSchema', () => {
     expect(schema.properties.complexProperty.properties['name']).to.exist;
     expect(schema.properties.complexProperty.properties.id.properties['subid']).to.exist;
     expect(schema.properties.complexProperty.properties.id.properties['anotherDeprecated']).to.not.exist;
-  }); 
+  });
 
   it('should not filter a property named "deprecated"', () => {
 
@@ -115,15 +127,10 @@ describe('getComponentSchema', () => {
     expect(schema.properties['iDoNothing']).to.not.exist;
     expect(schema.properties['id']).to.exist;
     expect(schema.properties['deprecated']).to.exist;
-  }); 
-
-});
-
-describe('Schema', () => {
-  it('re-exports schemas', () => {
-    expect(Schema).to.eql(OriginalSchemas);
   });
+
 });
+
 
 describe('createPropTypes', function() {
   let schema, validators;

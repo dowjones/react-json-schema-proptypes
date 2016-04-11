@@ -1,9 +1,9 @@
 import merge from 'lodash/merge';
 import ajv from './ajvEx';
-import * as Schema from './schemas';
 import omitDeprecated from './util';
 
-export { Schema };
+export * as Schema from './schemas';
+export fake from './fake';
 
 export const SchemaSymbol = Symbol.for('react-json-schema-proptypes');
 

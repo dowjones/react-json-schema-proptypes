@@ -10,12 +10,12 @@
     "lib"
   ],
   "scripts": {
-    "babelize": "babel src -d lib --presets es2015,react,stage-0",
+    "babelize": "babel src -d lib --ignore *.spec.js --presets es2015,react,stage-0",
     "build": "npm run babelize",
     "lint": "eslint ./src",
     "pretest": "npm run build && npm run lint",
     "prepublish": "npm run build",
-    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./spec/**/*.js"
+    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js"
   },
   "keywords": [
     "React",
@@ -43,6 +43,8 @@
   "dependencies": {
     "ajv": "^3.8.5",
     "ajv-i18n": "^1.2.0",
+    "faker": "^3.1.0",
+    "json-schema-faker": "^0.3.0",
     "lodash": "^4.6.1"
   },
   "peerDependencies": {

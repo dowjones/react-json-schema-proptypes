@@ -1,16 +1,21 @@
+export const func = {
+  'isFunction': true,
+  'faker': {
+    'type': 'function'
+  }
+};
+
 export const element = {
   'type': 'object',
-  'isReactElement': true
+  'isReactElement': true,
+  'faker': {
+    'type': 'element'
+  }
 };
-
-export const func = {
-  'isFunction': true
-};
-
 
 export const node = {
   'oneOf': [
-    { 
+    {
       'type': 'array',
       'items': {
         'oneOf': [

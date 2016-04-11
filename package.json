@@ -43,6 +43,8 @@
   "dependencies": {
     "ajv": "^3.8.5",
     "ajv-i18n": "^1.2.0",
+    "faker": "^3.1.0",
+    "json-schema-faker": "^0.3.0",
     "lodash": "^4.6.1"
   },
   "peerDependencies": {

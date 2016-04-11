@@ -10,12 +10,12 @@
     "lib"
   ],
   "scripts": {
-    "babelize": "babel src -d lib --presets es2015,react,stage-0",
+    "babelize": "babel src -d lib --ignore *.spec.js --presets es2015,react,stage-0",
     "build": "npm run babelize",
     "lint": "eslint ./src",
     "pretest": "npm run build && npm run lint",
     "prepublish": "npm run build",
-    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./spec/**/*.js"
+    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js"
   },
   "keywords": [
     "React",

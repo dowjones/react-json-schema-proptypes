@@ -1,4 +1,4 @@
-# react-json-schema-proptypes
+# React-json-schema-proptypes
 
 Build React PropTypes using a JSON Schema with introspection support.
 

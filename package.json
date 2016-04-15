@@ -16,7 +16,7 @@
     "pretest": "npm run build && npm run lint",
     "prepublish": "npm run build",
     "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js",
-    "test-cover": "istanbul cover -i \"src/**/*.js\" -x \"src/**/*spec.js\" --include-all-sources _mocha -- --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js",
+    "test-cover": "istanbul cover -i \"src/**/*.js\" -x \"src/**/*spec.js\" --report cobertura --include-all-sources _mocha -- --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js",
     "test-ci": "npm run test-cover"
   },
   "keywords": [

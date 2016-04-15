@@ -103,7 +103,7 @@ Given a JSON schema, return a React proptypes object.
 
 ### getComponentSchema(Component)
 
-Returns a component's schema from a component class. 
+Returns a component's schema from a component class.
 
 ### SchemaSymbol
 
@@ -111,7 +111,7 @@ The Sympbol for react-json-schema-proptypes.
 
 ### Schema
 
-#### Schema.element 
+#### Schema.element
 Is a schema that validates a React element.  (Gives a schema represetation equivalent to React.Element)
 
 #### Schema.node
@@ -125,13 +125,6 @@ Is a schema that validates a function.
 
 Not all features of JSON-Schema are currently supported, for example cross-validation with other props, so we recommend keeping the schema simple and type-based rather than logic-based.
 
-## Local development
+## License
 
-This project is built with [TypeScript](https://github.com/Microsoft/TypeScript).
-
-
-Optionally, you would also need [DefinitelyTyped](http://definitelytyped.org/) to install/update TypeScript definition files.
-
-```
-npm install tsd -g
-```
+[MIT](/LICENSE)

@@ -111,7 +111,7 @@ The Sympbol for react-json-schema-proptypes.
 
 ### Schema
 
-#### Schema.element 
+#### Schema.element
 Is a schema that validates a React element.  (Gives a schema represetation equivalent to React.Element)
 
 #### Schema.node

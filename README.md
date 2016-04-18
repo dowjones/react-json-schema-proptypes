@@ -127,10 +127,10 @@ Not all features of JSON-Schema are currently supported, for example cross-valid
 
 ## Contributors
 
-* [charypar](/charypar)
-* [mrchief](/mrchief)
-* [RGBboy](/RGBboy)
-* [StuartHarris](/StuartHarris)
+* [charypar](http://github.com/charypar)
+* [mrchief](http://github.com/mrchief)
+* [RGBboy](http://github.com/RGBboy)
+* [StuartHarris](http://github.com/StuartHarris)
 
 ## License
 

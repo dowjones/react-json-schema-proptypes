@@ -125,6 +125,13 @@ Is a schema that validates a function.
 
 Not all features of JSON-Schema are currently supported, for example cross-validation with other props, so we recommend keeping the schema simple and type-based rather than logic-based.
 
+## Contributors
+
+* [charypar](http://github.com/charypar)
+* [mrchief](http://github.com/mrchief)
+* [RGBboy](http://github.com/RGBboy)
+* [StuartHarris](http://github.com/StuartHarris)
+
 ## License
 
 [MIT](/LICENSE)

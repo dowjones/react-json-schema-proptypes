@@ -15,7 +15,9 @@
     "lint": "eslint ./src",
     "pretest": "npm run build && npm run lint",
     "prepublish": "npm run build",
-    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js"
+    "test": "mocha --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js",
+    "test-cover": "istanbul cover -i \"src/**/*.js\" -x \"src/**/*spec.js\" --report cobertura --report lcov --include-all-sources node_modules/mocha/bin/_mocha -- --compilers js:babel-core/register --recursive --reporter spec ./**/*.spec.js",
+    "test-ci": "npm run test-cover"
   },
   "keywords": [
     "React",
@@ -34,11 +36,12 @@
     "babel-preset-stage-0": "^6.1.18",
     "chai": "^3.4.1",
     "eslint": "^1.9.0",
+    "istanbul": "^1.0.0-alpha.2",
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",
-    "sinon": "^1.17.3",
     "react": "^0.14.7",
-    "rimraf": "^2.5.2"
+    "rimraf": "^2.5.2",
+    "sinon": "^1.17.3"
   },
   "dependencies": {
     "ajv": "^3.8.5",

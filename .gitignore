@@ -1,6 +1,8 @@
 node_modules/
 npm-debug.log
+.npm-cache
 lib/
+coverage/
 
 # Webstorm artifacts
 .idea/

@@ -1,0 +1,10 @@
+.npm-cache
+lib/
+coverage/
+**/*.spec.js
+
+# Tools artifacts
+.idea/
+.eslintrc
+.babelrc
+.gitignore

@@ -93,7 +93,7 @@ _* This will create a new object rather than mutating existing ones so you're sa
 ## API
 
 ``` js
-import createPropTypes, {getComponentSchema, Schema, SchemaSymbol} from 'react-json-schema-proptypes';
+import createPropTypes, {getComponentSchema, Schema, SchemaSymbol, ajv} from 'react-json-schema-proptypes';
 
 ```
 
@@ -120,6 +120,8 @@ Is a schema that validates a React node.  (Gives a schema represetation equivale
 #### Schema.func
 Is a schema that validates a function.
 
+### ajv
+The internally used instance of Ajv(https://github.com/epoberezkin/ajv). This instance may be configured e.g. to support nested schema's (See (https://github.com/epoberezkin/ajv#api)[https://github.com/epoberezkin/ajv#api])  
 
 ## Caveats
 

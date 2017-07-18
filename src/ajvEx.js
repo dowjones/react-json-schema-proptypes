@@ -2,7 +2,10 @@ import AJV from 'ajv';
 import * as React from 'react';
 import isFunction from 'lodash/isFunction';
 
-const ajv = AJV({errorDataPath: 'property'}); // restore pre v2.0 behavior
+const ajv = AJV({
+  errorDataPath: 'property', // restore pre v2.0 behavior
+  unknownFormats: 'ignore' // restore pre v5.0 behavior
+});
 
 function safeEscapeQuotes(str) {
   return str.replace(/\\([\s\S])|(')/g,"\\$1$2").replace(/\\([\s\S])|(")/g,"\\$1$2"); // escape only if not escaped already

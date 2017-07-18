@@ -4,7 +4,7 @@ import omitDeprecated from './util';
 
 export * as Schema from './schemas';
 export fake from './fake';
-
+export { ajv };
 export const SchemaSymbol = Symbol.for('react-json-schema-proptypes');
 
 function name(component) {

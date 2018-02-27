@@ -37,13 +37,10 @@
     "mocha": "^2.3.4",
     "mocha-sinon": "^1.1.5",
     "react": "^0.14.7",
-    "rimraf": "^2.5.2",
     "sinon": "^1.17.3"
   },
   "dependencies": {
     "ajv": "^6.2.0",
-    "ajv-i18n": "^1.2.0",
-    "faker": "^3.1.0",
     "json-schema-faker": "^0.3.0",
     "lodash": "^4.6.1"
   },
